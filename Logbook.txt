@@ -1,0 +1,153 @@
+[  ] 11 April 2023
+	---------------- JMETER --------------------
+	- Mencari platform performance test
+	- installing dan setup Jmeter
+	- creating first Jmeter test
+	- timers in Jmeter
+	- logic controller in Jmeter
+	- recording controller in Jmeter
+	
+[  ] 12 April 2023
+	- Recording controller
+		* tidak bisa mengatur proxy secara menual untuk google chrome
+		* akhirnya menggunakan mozila firefox
+		
+[  ] 13 April 2023
+	- Recording controller
+		* hanya bisa menggunakan firefox karena bisa custom proxy
+	- Simple, module, and include controller
+		* bisa digunakan untuk memanggil sampler yang sama ditempat yang berbeda (single dan module)
+	- Random and random order controller
+		* random controller hanya menjalankan satu sampler di dalamnya
+		* random order controller menjalankan semua sampler di dalamnya secara acak
+	- Interleave controller
+		* jika terdapat beberapa sampler di dalamnya maka akan dieksekusi antara top-bottom atau bottom-top dalam loop.
+	- Throughput controller
+		* digunakan untuk mendistribusikan virtual user dalam threat group ke masing2 sampler
+		* dapat dibagi dalam persentase
+
+	Issues
+	- beberapa web tidak bisa ditesting menggunakan Jmeter contohnya tokopedia dan gramedia
+	
+[  ] 14 April 2023
+	- Internal and external parameter
+		* Internal : menggunakan elemen User Defined Variables
+		* External : menggunakan elemen CSV Data Set Config
+		* agar semua data pada data external terpakai, manfaatkan jumlah looping pada Threat Group
+		
+[  ] 16 April 2023
+	- Menyimpan hasil testing dalam format .html
+	- jmeter -n -t "D:\ACC Yasin\RnD Performance Testing\Jmeter\First Test Plan Result in Table.jmx" -l "D:\ACC Yasin\RnD Performance Testing\Jmeter\Results\First Test Plan Result in Table.csv" -e -o "D:\ACC Yasin\RnD Performance Testing\Jmeter\Results"
+		
+[  ] 17 April 2023
+	- API test menggunakan Jmeter
+		* jangan lupa mengisi Protocol pada HTTP Request
+		
+	- Posting multiple request using Jmeter
+		* elemen yang dibutuhkan : CSV Data Set Config dan HTTP Request
+		* elemen external yang dibutuhkan : file Json, file .csv dengan list nama file Json
+		* dalam HTTP Request pada Body Data masukkan  ${__FileToString(D:\ACC Yasin\RnD Performance Testing\Jmeter\Data Multiple Json/${__eval(${JSON_FILE})}.json,,)}
+		* pada CSV Data Config masukkan File Name sesuai nama file .csv yang sudah dibuat. isi Variable Names dengan "JSON_FILE"
+		* jumlah data Json sesuai dengan jumlah threat pada Threat Group
+		* membuat file Json : https://json-generator.com/
+		
+		
+[  ] 18 April 2023
+[  ] 19 April 2023
+[  ] 20 April 2023
+	---------------- LOCUST --------------------
+	- terms
+		* Swarm : group of animals that agregate and travel in the same directioon
+			attacking particular system
+		* Hatching : production
+		* Spawn : release and deposit
+			spinning up the new user to attack the system
+	- installing locust menggunakan pycharm
+	- creating first project : UserClass
+		* karena kita pakenya virtual environment, harus install locust setiap tambah project pada terminal
+			pip install locust
+		* pastikan kita sedang dalam virtual environmrnt (venv) pada terminal
+			venv\Scripts\activate.bat
+		* create python file, ketikkan scriptnya
+		* untuk execute, pada terminal
+			locust -f "nama python file"
+		* pada browser buka url localhost:"port" atau defaultnya localhost:8089
+	- testing method 
+		* belajar testing method pada reqres.in -> GET, POST
+		* library yang digunakan : HttpUser
+		* masukkan host : "https://reqres.in"
+		* untuk memanggil method gunakan : self.client.get(path) atau self.client.post(path, data = '''body (Json)''')
+		
+[  ] 21 April 2023
+	- penggunaan class TaskSet
+		* website : "https://http.cat/"
+		* membedakannya class HttpUser agar bisa dipanggil di HttpUser
+		* bisa membantu menjalankan testing sesuai hirarki
+			home						|
+			about us					|
+				team					|
+				leadership				|
+			services					|
+				development				|
+				performance engineering	|
+					performance testing	|---> hirarki
+				AI						|
+			products					|
+				SaaS					|
+				On-premise				|
+			contact						|
+			blog						|
+		* menggunakan library random untuk menggenerate request dengan kode yang random
+		* testing website seva.id dengan jumlah virtua user sebanyak 1000 orang selama 30 menit
+		
+[  ] 25 April 2023
+	- penggunaan class TaskSet part 2
+		* penggunaan nested taskset : menggunakan sub class
+		* harus menggunakan interrupt agar bisa kembali ke parrent class. jika tidak maka akan mengeksekusi sub class selamanya
+		* jika terdapat 2 class yang setara, maka interrupt diberikan ke keduanya
+	- sequential taskset class
+		* lebih advance dibanding sebelumnya yang harus menggunakan interrupt, untuk ini tidak perlu
+		
+[  ] 26 April 2023
+	- Wait time Function
+	- Command line
+		* run tanpa web UI : locust -f <namafile>.py -u <jumlah user> -r <rate> -t <durasi testing (dalam detik)> --headless
+		* run kemudian generate report html : locust -f <nama file>.py --html
+		
+[  ] 27 April 2023
+	- Data parameterization
+		* Tidak mengerti, ada package/library yang tidak bisa diinstall
+	- Correlation
+		* tidak mengerti
+	- Logging
+		* tidak mengerti
+	- Locust configuration
+		* tidak mengerti
+	- Events and EventHook
+		* tidak mengerti
+	- Distributed load testing
+		* tidak mengerti
+[  ] 28 April 2023
+[  ] 30 April 2023
+	- Stress testing seva home page, mobil baru, promo, berita, about 1 jam 500 user pada Jmeter dan Locust
+	
+[  ] 1 Mei 2023
+[  ] 2 Mei 2023
+	- Mencari testing tool yang cocok
+		* Gatling : no, i'm not familiar with the language
+		* Neoload : no, it's not open source
+		* The grinder : no, 
+		* Bees with machine guns : no tutorial was found
+		
+[  ] 3 Mei 2023
+	---------- GATLING ------------
+	- Introduction, installing gatling
+	- Using Gatling Recorder to write testing script  and run testing : testing failed
+	- Instalasi inteliJ
+	
+[  ] 4 Mei 2023
+[  ] 5 Mei 2023
+[  ] 8 Mei 2023
+[  ] 9 Mei 2023
+[  ] 10 Mei 2023
+[  ] 11 Mei 2023
